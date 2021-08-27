@@ -1,3 +1,5 @@
+server:
+  port: 8080
 
 spring:
   datasource:
@@ -11,3 +13,17 @@ spring:
         show_sql: true
         format_sql: true
         use_sql_comments: true
+
+async:
+  thread:
+    threadNamePrefix: async-thread-
+    corePoolSize: 20
+    maxPoolSize: 100
+    queueCapacity: 1000
+
+jwt:
+  token:
+    headerKey: api-key
+    issuer: torder-exam-YH
+    clientSecret: torder001
+    expirySeconds: 3600

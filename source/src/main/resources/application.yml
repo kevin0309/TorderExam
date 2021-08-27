@@ -1,0 +1,7 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db.park-yh.com:3306/torder_exam?autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: torder_exam_db
+    password: 1234

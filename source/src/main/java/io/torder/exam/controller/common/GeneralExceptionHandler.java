@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+/**
+ * Controller에서 발생한 Exception을 핸들링하는 클래스
+ */
 @ControllerAdvice
 public class GeneralExceptionHandler {
 

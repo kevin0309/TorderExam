@@ -1,5 +1,6 @@
 package io.torder.exam.config;
 
+import io.torder.exam.model.user.Role;
 import io.torder.exam.security.JwtObject;
 import io.torder.exam.security.errorHandler.JwtAccessDeniedHandler;
 import io.torder.exam.security.JwtAuthenticationFilter;
@@ -60,8 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").permitAll()
-                //.antMatchers("/api/**").hasRole(Role.USER.getCode())
+                .antMatchers("/api/user/join").permitAll()
+                .antMatchers("/api/admin/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/api/**").hasRole(Role.USER.name())
                 .accessDecisionManager(accessDecisionManager())
                 .anyRequest().permitAll()
                 .and()

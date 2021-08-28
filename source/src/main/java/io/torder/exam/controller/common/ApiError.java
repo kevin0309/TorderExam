@@ -3,6 +3,9 @@ package io.torder.exam.controller.common;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * ApiResponse에서 사용되는 error 형식을 정의하는 클래스
+ */
 @Getter
 public class ApiError {
 

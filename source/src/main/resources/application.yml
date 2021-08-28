@@ -13,6 +13,8 @@ spring:
         show_sql: true
         format_sql: true
         use_sql_comments: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 async:
   thread:

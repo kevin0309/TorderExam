@@ -5,10 +5,14 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+/**
+ * AbstractAuthenticationToken을 상속받아
+ * principal, credentials를 정의하는 클래스
+ */
 public class JwtAuthentication extends AbstractAuthenticationToken {
 
-    private final String principal;
-    private String credentials;
+    private final String principal; //userId
+    private String credentials; //password
 
     /*public JwtAuthentication(String principal, String credentials) {
         //인증이 되지 않은 상태로 초기화

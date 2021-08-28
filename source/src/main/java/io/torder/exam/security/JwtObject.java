@@ -33,7 +33,6 @@ public class JwtObject {
 
     /**
      * 새로운 토큰 발급
-     * @param claims
      * @return JWT token
      */
     public String newToken(Claims claims) {
@@ -51,19 +50,15 @@ public class JwtObject {
     /**
      * JWT 토큰의 유효성을 검사하는 메서드
      * 검사 후 Claims로 wrapping하여 반환
-     * @param token
      * @return Claims
-     * @throws JWTVerificationException
      */
     public Claims verify(String token) throws JWTVerificationException {
-        return new Claims(jwtVerifier.verify(token));
+        return Claims.getInstance(jwtVerifier.verify(token));
     }
 
     /**
      * 기존의 토큰 정보를 기반으로 새로운 토큰을 발급하는 메서드(기한연장)
-     * @param token
      * @return JWT token
-     * @throws JWTVerificationException
      */
     public String refreshToken(String token) throws JWTVerificationException {
         //한번 검증한 후 새로발급
@@ -81,23 +76,25 @@ public class JwtObject {
 
         private Claims() {}
 
-        Claims(DecodedJWT decodedJWT) {
+        static Claims getInstance(DecodedJWT decodedJWT) {
+            Claims result = new Claims();
             Claim userId = decodedJWT.getClaim("userId");
             Claim roles = decodedJWT.getClaim("roles");
             if (!userId.isNull())
-                this.userId = userId.asString();
+                result.userId = userId.asString();
             if (!roles.isNull())
-                this.roles = roles.asArray(String.class);
-            this.issuedAt = decodedJWT.getIssuedAt();
-            this.expiresAt = decodedJWT.getExpiresAt();
+                result.roles = roles.asArray(String.class);
+            result.issuedAt = decodedJWT.getIssuedAt();
+            result.expiresAt = decodedJWT.getExpiresAt();
+            return result;
         }
 
-        static Claims getInstance(String userId, String[] roles) {
+        /*static Claims getInstance(String userId, String[] roles) {
             Claims result = new Claims();
             result.userId = userId;
             result.roles = roles;
             return result;
-        }
+        }*/
 
         long getIssuedAt() {
             return issuedAt != null ? issuedAt.getTime() : -1;

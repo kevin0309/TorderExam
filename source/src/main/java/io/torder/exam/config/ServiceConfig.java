@@ -13,6 +13,9 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class ServiceConfig {
 
+    /**
+     * 인코딩 charset은 UTF-8로 고정
+     */
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
@@ -21,6 +24,9 @@ public class ServiceConfig {
         return characterEncodingFilter;
     }
 
+    /**
+     * JwtObject를 빈으로 등록
+     */
     @Bean
     public JwtObject jwtObject(JwtTokenConfig jwtTokenConfig) {
         return new JwtObject(jwtTokenConfig.getIssuer(), jwtTokenConfig.getClientSecret(), jwtTokenConfig.getExpirySeconds());

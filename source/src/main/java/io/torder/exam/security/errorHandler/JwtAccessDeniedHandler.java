@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 인증되지 않은 요청에 대한 처리를 정의하는 클래스
+ */
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 

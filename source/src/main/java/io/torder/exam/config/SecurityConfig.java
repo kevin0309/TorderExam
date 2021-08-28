@@ -21,6 +21,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * spring security에 관련된 설정을 정의하는 클래스
+ */
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
@@ -31,6 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final UnauthorizedEntryPointHandler unauthorizedEntryPointHandler;
 
+    /**
+     * 보안설정의 예외가 될 URL 정의
+     */
     @Override
     public void configure(WebSecurity web) {
         web
@@ -38,6 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**");
     }
 
+    /**
+     * http 요청에 대하여 수행할 보안설정 정의
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

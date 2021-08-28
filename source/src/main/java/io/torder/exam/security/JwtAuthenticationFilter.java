@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * HTTP 요청의 JWT token을 확인/갱신 하는 필터
+ * HTTP 요청의 JWT token을 인증/갱신 하는 필터
  */
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends GenericFilterBean {
@@ -48,16 +48,21 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                 try {
                     JwtObject.Claims claims = jwtObject.verify(authenticationToken);
 
-                    //10분 미만으로 남았다면 토큰을 리프레시 시킴
-                    if (checkRemainMillis(claims) < 10 * 60 * 1000) {
+                    //토큰이 만료되었다면 인증하지 않고 종료
+                    if (checkRemainMillis(claims) < 0) {
+                        chain.doFilter(request, response);
+                        return;
+                    }
+                    //15분 미만으로 남았다면 토큰을 리프레시 시킴
+                    else if (checkRemainMillis(claims) < 15 * 60 * 1000) {
                         String refreshedToken = jwtObject.refreshToken(authenticationToken);
                         res.setHeader(headerKey, refreshedToken);
                     }
 
+                    //token의 정보를 기반으로 인증절차 진행
                     String userId = claims.userId;
                     List<GrantedAuthority> authorities = obtainAuthorities(claims);
 
-                    //token의 정보를 기반으로 인증절차 진행
                     if (userId != null && authorities.size() > 0) {
                         JwtAuthentication jwtAuthentication =
                                 new JwtAuthentication(userId, null, authorities);
@@ -70,7 +75,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                 }
             }
         }
-
         chain.doFilter(request, response);
     }
 
@@ -99,8 +103,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
     /**
      * claims의 만료까지 남은 시간을 구하는 메서드
-     * @param claims
-     * @return
      */
     private long checkRemainMillis(JwtObject.Claims claims) {
         return claims.getExpiresAt() - System.currentTimeMillis();
@@ -108,8 +110,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
     /**
      * claims에서 roles를 읽어오는 메서드
-     * @param claims
-     * @return
      */
     private List<GrantedAuthority> obtainAuthorities(JwtObject.Claims claims) {
         String[] roles = claims.roles;

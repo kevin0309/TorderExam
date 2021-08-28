@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 인증은 되었으나 인가되지 않은 요청에 대한 처리를 정의하는 클래스
+ */
 @RequiredArgsConstructor
 @Component
 public class UnauthorizedEntryPointHandler implements AuthenticationEntryPoint {

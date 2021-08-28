@@ -51,14 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() //spring security가 요구하는 기본 csrf 토큰 무시
+                .csrf().disable() //spring security가 요구하는 기본 csrf 토큰 비활성화
                 .headers().disable() //spring security가 제공하는 보안응답헤더 비활성화
                 .formLogin().disable() //spring security가 제공하는 폼로그인화면 비활성화
                 .exceptionHandling()
                 .accessDeniedHandler(jwtAccessDeniedHandler)
                 .authenticationEntryPoint(unauthorizedEntryPointHandler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/user/join").permitAll()
@@ -66,6 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").hasRole(Role.USER.name())
                 .accessDecisionManager(accessDecisionManager())
                 .anyRequest().permitAll()
+                .and()
+                //Jwt를 사용하여 인증을 구현하기 때문에 기존의 session management를 비활성화
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 //Jwt 인증을 위해 필터체인 변경
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

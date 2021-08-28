@@ -11,19 +11,19 @@ import java.util.Collection;
  */
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
-    private final String principal; //userId
+    private final Object principal; //userId
     private String credentials; //password
 
-    /*public JwtAuthentication(String principal, String credentials) {
+    public JwtAuthenticationToken(String principal, String credentials) {
         //인증이 되지 않은 상태로 초기화
         super(null);
         super.setAuthenticated(false);
 
         this.principal = principal;
         this.credentials = credentials;
-    }*/
+    }
 
-    protected JwtAuthenticationToken(String principal, String credentials, Collection<? extends GrantedAuthority> authorities) {
+    protected JwtAuthenticationToken(Object principal, String credentials, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         super.setAuthenticated(true);
 
@@ -37,7 +37,7 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     @Override
-    public Object getCredentials() {
+    public String getCredentials() {
         return credentials;
     }
 

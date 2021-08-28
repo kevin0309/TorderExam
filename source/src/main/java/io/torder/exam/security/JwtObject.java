@@ -89,12 +89,12 @@ public class JwtObject {
             return result;
         }
 
-        /*static Claims getInstance(String userId, String[] roles) {
+        static Claims getInstance(String userId, String[] roles) {
             Claims result = new Claims();
             result.userId = userId;
             result.roles = roles;
             return result;
-        }*/
+        }
 
         long getIssuedAt() {
             return issuedAt != null ? issuedAt.getTime() : -1;

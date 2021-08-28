@@ -1,16 +1,19 @@
 package io.torder.exam.config;
 
 import io.torder.exam.model.user.Role;
+import io.torder.exam.security.JwtAuthenticationProvider;
 import io.torder.exam.security.JwtObject;
 import io.torder.exam.security.errorHandler.JwtAccessDeniedHandler;
 import io.torder.exam.security.JwtAuthenticationFilter;
 import io.torder.exam.security.errorHandler.UnauthorizedEntryPointHandler;
+import io.torder.exam.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.UnanimousBased;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -60,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/user/join").permitAll()
+                .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/api/admin/**").hasRole(Role.ADMIN.name())
                 .antMatchers("/api/**").hasRole(Role.USER.name())
                 .accessDecisionManager(accessDecisionManager())
@@ -87,4 +91,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthenticationFilter(jwtTokenConfig.getHeaderKey(), jwtObject);
     }
 
+    /**
+     * 로그인 시 사용될 AuthenticationProvider 빈 등록
+     */
+    @Bean
+    public JwtAuthenticationProvider jwtAuthenticationProvider(JwtObject jwtObject, UserService userService) {
+        return new JwtAuthenticationProvider(jwtObject, userService);
+    }
+
+    /**
+     * AuthenticationManager 빈 등록
+     */
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }

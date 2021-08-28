@@ -31,4 +31,10 @@ public class BaseEntity {
 
     @LastModifiedDate
     private LocalDateTime moddate;
+
+    public BaseEntity() {
+        this.seq = null;
+        this.regdate = LocalDateTime.now();
+        this.moddate = null;
+    }
 }

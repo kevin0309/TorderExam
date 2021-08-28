@@ -9,7 +9,7 @@ import java.util.Collection;
  * AbstractAuthenticationToken을 상속받아
  * principal, credentials를 정의하는 클래스
  */
-public class JwtAuthentication extends AbstractAuthenticationToken {
+public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
     private final String principal; //userId
     private String credentials; //password
@@ -23,7 +23,7 @@ public class JwtAuthentication extends AbstractAuthenticationToken {
         this.credentials = credentials;
     }*/
 
-    protected JwtAuthentication(String principal, String credentials, Collection<? extends GrantedAuthority> authorities) {
+    protected JwtAuthenticationToken(String principal, String credentials, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         super.setAuthenticated(true);
 

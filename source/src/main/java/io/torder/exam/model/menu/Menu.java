@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "menu")
-public class Menu extends BaseEntity {
+public class Menu extends BaseEntity<Menu> {
 
     @Column(nullable = false)
     private String name;
@@ -23,6 +23,6 @@ public class Menu extends BaseEntity {
     @Column(nullable = false)
     private Integer price;
 
-    @Column(nullable = true, name = "image_url")
+    @Column(nullable = true, name = "img_url")
     private String imageUrl;
 }

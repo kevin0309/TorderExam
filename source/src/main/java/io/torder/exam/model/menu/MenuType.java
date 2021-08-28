@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "menu_type")
-public class MenuType extends BaseEntity {
+public class MenuType extends BaseEntity<MenuType> {
 
     @Column(nullable = false, name = "desc_kor")
     private String descKor;

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public class BaseEntity<T> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +36,10 @@ public class BaseEntity {
         this.seq = null;
         this.regdate = LocalDateTime.now();
         this.moddate = null;
+    }
+
+    public T updateModdate() {
+        this.moddate = LocalDateTime.now();
+        return (T)this;
     }
 }

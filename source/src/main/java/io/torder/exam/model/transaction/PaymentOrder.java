@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "payment_order")
-public class PaymentOrder extends BaseEntity {
+public class PaymentOrder extends BaseEntity<PaymentOrder> {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_seq")

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User extends BaseEntity<User> {
 
     @Column(nullable = false, name = "id")
     private String userId;

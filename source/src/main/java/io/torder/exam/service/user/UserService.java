@@ -68,6 +68,7 @@ public class UserService {
     /**
      * 사용자 정보수정 (현재는 비밀번호만 수정)
      */
+    @Transactional
     public User modify(String userId, ModRequest modRequest) {
         //기존 패스워드 검증
         User user = validateUser(userId, modRequest.getCurrentPw());
@@ -98,6 +99,7 @@ public class UserService {
                 .password(encodedPassword)
                 .build();
         userPasswordDaoService.saveUserPassword(newUserPassword);
+        userDaoService.saveUser(user.updateModdate());
 
         return user;
     }

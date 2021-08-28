@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,7 +24,7 @@ public class UserRestController {
     private final UserService userService;
 
     @Async
-    @PostMapping("join")
+    @PutMapping("join")
     public CompletableFuture<ApiResponse<JoinResponse>> join(@RequestBody JoinRequest joinRequest) {
         User newUser =  userService.join(joinRequest);
         JoinResponse joinResponse = new JoinResponse(newUser.getUserId(), true);
@@ -35,7 +32,7 @@ public class UserRestController {
     }
 
     @Async
-    @PostMapping("mod-info")
+    @PostMapping("info")
     public CompletableFuture<ApiResponse<ModResponse>> modInfo(@AuthenticationPrincipal JwtAuthentication auth,
                 @RequestBody ModRequest modRequest) {
         if (modRequest.getId().equals(auth.getUserId()))

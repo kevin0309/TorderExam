@@ -11,32 +11,27 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "menu")
-public class Menu extends BaseEntity<Menu> {
+@Table(name = "menu_option")
+public class MenuOption extends BaseEntity<MenuOption> {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_seq")
+    private Menu menu;
 
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private MenuType type;
-
     @Column(nullable = false)
     private Integer price;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MenuStatus status;
 
-    @Column(nullable = true, name = "img_url")
-    private String imageUrl;
-
     @Builder
-    public Menu(String name, MenuType type, Integer price, MenuStatus status, String imageUrl) {
+    public MenuOption(Menu menu, String name, Integer price, MenuStatus status) {
+        this.menu = menu;
         this.name = name;
-        this.type = type;
         this.price = price;
         this.status = status;
-        this.imageUrl = imageUrl;
     }
 }

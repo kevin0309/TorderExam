@@ -1,5 +1,6 @@
 package io.torder.exam.security;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -48,13 +49,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                 try {
                     JwtObject.Claims claims = jwtObject.verify(authenticationToken);
 
-                    //토큰이 만료되었다면 인증하지 않고 종료
-                    if (checkRemainMillis(claims) < 0) {
-                        chain.doFilter(request, response);
-                        return;
-                    }
                     //15분 미만으로 남았다면 토큰을 리프레시 시킴
-                    else if (checkRemainMillis(claims) < 15 * 60 * 1000) {
+                    if (checkRemainMillis(claims) < 15 * 60 * 1000) {
                         String refreshedToken = jwtObject.refreshToken(authenticationToken);
                         res.setHeader(headerKey, refreshedToken);
                     }
@@ -70,6 +66,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
                         SecurityContextHolder.getContext().setAuthentication(jwtAuthentication);
                     }
+                } catch (TokenExpiredException e) {
+                    System.out.println("Expired token detected!\nremote IP : " + req.getRemoteAddr() + "\ntoken : " + authenticationToken);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -94,7 +92,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
                     String jwtToken = tempApiKey[1];
                     return API_KEY_PATTERN.matcher(scheme).matches() ? jwtToken : null;
                 }
-            } catch (UnsupportedEncodingException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

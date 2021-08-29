@@ -27,7 +27,7 @@ public class BaseEntity<T> {
     private Integer seq;
 
     @CreatedDate
-    private LocalDateTime regdate;
+    private final LocalDateTime regdate;
 
     @LastModifiedDate
     private LocalDateTime moddate;

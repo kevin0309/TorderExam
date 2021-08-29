@@ -43,7 +43,7 @@ public class MenuService {
         for (Menu menu : menus)
             if (menu.getType().getSeq() == menuType.getSeq())
                 newNode.getMenus().add(new MenuResponse(menu.getSeq(), menu.getName(),
-                        menu.getType().getSeq(), menu.getPrice(), menu.getImageUrl()));
+                        menu.getType().getSeq(), menu.getPrice(), menu.getStatus().getDesc(), menu.getImageUrl()));
         parent.getChildren().add(newNode);
 
         for (MenuType mt : menuType.getChildren())

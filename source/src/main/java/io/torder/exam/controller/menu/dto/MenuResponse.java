@@ -8,13 +8,15 @@ public class MenuResponse {
     private final String name;
     private final int typeSeq;
     private final int price;
+    private final String status;
     private final String imageUrl;
 
-    public MenuResponse(int seq, String name, int typeSeq, int price, String imageUrl) {
+    public MenuResponse(int seq, String name, int typeSeq, int price, String status, String imageUrl) {
         this.seq = seq;
         this.name = name;
         this.typeSeq = typeSeq;
         this.price = price;
+        this.status = status;
         this.imageUrl = imageUrl;
     }
 }

@@ -23,6 +23,10 @@ public class Menu extends BaseEntity<Menu> {
     @Column(nullable = false)
     private Integer price;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private MenuStatus status;
+
     @Column(nullable = true, name = "img_url")
     private String imageUrl;
 }

@@ -20,4 +20,5 @@ public class ApiError {
     public ApiError(HttpStatus status, Throwable throwable) {
         this(status, throwable.getMessage());
     }
+
 }

@@ -38,8 +38,12 @@ public class BaseEntity<T> {
         this.moddate = null;
     }
 
+    /**
+     * 현재시간으로 moddate를 수정하는 메서드
+     */
     public T updateModdate() {
         this.moddate = LocalDateTime.now();
         return (T)this;
     }
+
 }

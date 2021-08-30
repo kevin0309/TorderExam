@@ -31,4 +31,5 @@ public class ServiceConfig {
     public JwtObject jwtObject(JwtTokenConfig jwtTokenConfig) {
         return new JwtObject(jwtTokenConfig.getIssuer(), jwtTokenConfig.getClientSecret(), jwtTokenConfig.getExpirySeconds());
     }
+
 }

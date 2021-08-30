@@ -16,4 +16,5 @@ public class PaymentResponse {
         this.status = status;
         this.timestamp = timestamp;
     }
+
 }

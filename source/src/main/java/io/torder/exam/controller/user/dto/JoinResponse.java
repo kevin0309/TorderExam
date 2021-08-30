@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class JoinResponse {
+
     private final String id;
     private boolean isSuccess;
 
@@ -11,4 +12,5 @@ public class JoinResponse {
         this.id = id;
         this.isSuccess = isSuccess;
     }
+
 }

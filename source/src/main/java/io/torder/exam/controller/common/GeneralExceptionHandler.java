@@ -65,4 +65,5 @@ public class GeneralExceptionHandler {
     public ResponseEntity<?> handleException(Exception e) {
         return response(HttpStatus.INTERNAL_SERVER_ERROR, e);
     }
+
 }

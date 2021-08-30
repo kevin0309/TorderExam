@@ -66,9 +66,10 @@ public class JwtObject {
     }
 
     /**
-     * JWT payload에 담길 claim들을 묶어서 관리할 내부클래스 생성
+     * JWT payload에 담길 claim들을 묶어서 관리할 내부클래스
      */
     static class Claims {
+
         String userId;
         String[] roles;
         Date issuedAt;
@@ -103,5 +104,7 @@ public class JwtObject {
         long getExpiresAt() {
             return expiresAt != null ? expiresAt.getTime() : -1;
         }
+
     }
+
 }

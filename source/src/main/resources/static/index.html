@@ -211,7 +211,6 @@
                     navFnObj.navMenuList = tempNavLv1List;
                     menuFnObj.menus = tempMenus;
                     navFnObj.swapNavMenu(0, 0);
-                    console.log(json);
                 });
             },
             swapNavMenu: function(navLv1, navLv2) {
@@ -326,7 +325,6 @@
                     param.menus.push(tempMenu);
                 }
 
-                console.log(JSON.stringify(param));
                 if (param.menus.length == 0)
                     return;
                 $$.ajax('PUT', '/api/menu/order', param, function(json) {
@@ -407,7 +405,6 @@
             paymentList: [],
             getPayments: function() {
                 $$.ajax('GET', '/api/menu/payment', null, function(json) {
-                    console.log(json);
                     paymentFnObj.paymentList = json.response;
                     paymentFnObj.refreshPaymentList();
                 });
@@ -439,19 +436,17 @@
             },
             payAll: function() {
                 $$.ajax('PUT', '/api/menu/payment', null, function(json) {
-                    console.log(json);
                     paymentFnObj.getPayments();
                     paymentFnObj.closeModal();
                     toastr["success"]('결제가 완료되었습니다.');
                 });
             }
         }
-
     </script>
 </head>
 <body>
 <header class="navbar navbar-expand-lg navbar-dark" style="position: fixed; width: 100vw; background: rgba(0,0,0,0.5);">
-    <span class="navbar-toggler-icon" onclick="alert('미구현');"></span>
+    <span class="navbar-toggler-icon" onclick="$$.logout()"></span>
     <a class="navbar-brand" href="/" style="margin-left: 1rem;width: 100px;height: 46px;background: url('http://torder.io/images/bg_icon.png') no-repeat -50px -50px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -18,4 +18,5 @@ public class LoginRequest {
         this.id = id;
         this.pw = pw;
     }
+
 }

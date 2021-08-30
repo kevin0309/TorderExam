@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 메뉴관련 비즈니스로직을 구현한 서비스 클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class MenuService {
@@ -48,4 +51,5 @@ public class MenuService {
         for (MenuType mt : menuType.getChildren())
             traverse(newNode, mt, menus);
     }
+
 }

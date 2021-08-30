@@ -14,4 +14,5 @@ public class OrderMenuResponse {
         this.menu = menu;
         this.qtt = qtt;
     }
+
 }

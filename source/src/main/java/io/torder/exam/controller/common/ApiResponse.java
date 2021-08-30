@@ -41,4 +41,5 @@ public class ApiResponse<T> {
     public static ApiResponse<?> ERROR(HttpStatus status, String message) {
         return new ApiResponse<>(null, new ApiError(status, message));
     }
+
 }

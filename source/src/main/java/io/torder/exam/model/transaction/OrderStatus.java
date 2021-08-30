@@ -2,6 +2,9 @@ package io.torder.exam.model.transaction;
 
 import lombok.Getter;
 
+/**
+ * Order의 상태를 나타낼 Enum
+ */
 @Getter
 public enum OrderStatus {
 
@@ -14,4 +17,5 @@ public enum OrderStatus {
     OrderStatus(String desc) {
         this.desc = desc;
     }
+
 }

@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ModRequest {
+
     private String id;
     private String currentPw;
     private String pw;
     private String pwConfirm;
+
 }

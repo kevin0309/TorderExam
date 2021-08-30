@@ -5,6 +5,9 @@ import io.torder.exam.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * UserRepository 에 직접적으로 접근하는 DAO 서비스클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class UserDaoService {
@@ -25,4 +28,5 @@ public class UserDaoService {
     public User findUser(String userId) {
         return userRepository.findByUserId(userId).orElseThrow(() -> new IllegalArgumentException("User ID not found"));
     }
+
 }

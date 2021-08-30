@@ -22,8 +22,10 @@ public class UnauthorizedEntryPointHandler implements AuthenticationEntryPoint {
                          AuthenticationException authException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setHeader("content-type", "application/json");
-        response.getWriter().write("Authentication error!\nHTTP status code : " + HttpServletResponse.SC_UNAUTHORIZED + " Unauthorized");
+        response.getWriter().write("Authentication error!\nHTTP status code : " +
+                HttpServletResponse.SC_UNAUTHORIZED + " Unauthorized");
         response.getWriter().flush();
         response.getWriter().close();
     }
+
 }

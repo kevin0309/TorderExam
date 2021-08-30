@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * user_password 테이블에 대응하는 도메인 모델을 정의하는 클래스
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -26,4 +29,5 @@ public class UserPassword extends BaseEntity<UserPassword> {
         this.user = user;
         this.password = password;
     }
+
 }

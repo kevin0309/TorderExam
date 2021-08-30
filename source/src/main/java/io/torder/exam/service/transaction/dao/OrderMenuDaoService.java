@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * OrderMenuRepository 에 직접적으로 접근하는 DAO 서비스클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class OrderMenuDaoService {
@@ -22,4 +25,5 @@ public class OrderMenuDaoService {
     public List<OrderMenu> findOrders(Order order) {
         return orderMenuRepository.findByOrder(order);
     }
+
 }

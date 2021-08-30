@@ -1,7 +1,7 @@
 package io.torder.exam.security;
 
 import io.torder.exam.model.user.User;
-import io.torder.exam.security.dto.JwtAuthentication;
+import io.torder.exam.controller.user.dto.JwtAuthentication;
 import io.torder.exam.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
@@ -55,4 +55,5 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return ClassUtils.isAssignable(JwtAuthenticationToken.class, authentication);
     }
+
 }

@@ -1,7 +1,7 @@
 package io.torder.exam.security;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import io.torder.exam.security.dto.JwtAuthentication;
+import io.torder.exam.controller.user.dto.JwtAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +16,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -115,4 +114,5 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         return roles == null || roles.length == 0 ? Collections.emptyList() :
                 Arrays.stream(roles).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
+
 }

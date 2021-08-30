@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class JoinRequest {
+
     private String id;
     private String pw;
     private String pwConfirm;
+
 }

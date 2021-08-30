@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * UserPasswordRepository 에 직접적으로 접근하는 DAO 서비스클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class UserPasswordDaoService {
@@ -21,4 +24,5 @@ public class UserPasswordDaoService {
     public List<UserPassword> findAll(User user) {
         return userPasswordRepository.findAllByUser(user);
     }
+
 }

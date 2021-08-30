@@ -13,4 +13,5 @@ public class OrderRequestElement {
 
     private int menuSeq;
     private int qtt;
+
 }

@@ -5,6 +5,9 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 
+/**
+ * MenuService::getAllMenuAsTree 에서 사용될 트리노드를 정의하는 클래스
+ */
 @Getter
 public class MenuTypeTreeNode {
 
@@ -17,4 +20,5 @@ public class MenuTypeTreeNode {
         this.children = new ArrayList<>();
         this.menus = new ArrayList<>();
     }
+    
 }

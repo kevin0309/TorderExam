@@ -2,6 +2,9 @@ package io.torder.exam.model.menu;
 
 import lombok.Getter;
 
+/**
+ * Menu의 상태를 나타낼 Enum
+ */
 @Getter
 public enum MenuStatus {
 
@@ -14,4 +17,5 @@ public enum MenuStatus {
     MenuStatus(String desc) {
         this.desc = desc;
     }
+
 }

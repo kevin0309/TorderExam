@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * 도메인 객체 UserPassword 에서 사용될 CRUD 기능을 정의하는 인터페이스
+ */
 @Repository
 public interface UserPasswordRepository extends JpaRepository<UserPassword, Integer> {
 

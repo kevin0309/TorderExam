@@ -32,4 +32,5 @@ public class AsyncConfig implements AsyncConfigurer {
         threadPoolTaskExecutor.initialize();
         return threadPoolTaskExecutor;
     }
+
 }

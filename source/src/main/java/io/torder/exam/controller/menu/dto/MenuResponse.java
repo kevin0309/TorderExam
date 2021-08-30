@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class MenuResponse {
+
     private final int seq;
     private final String name;
     private final int typeSeq;
@@ -20,4 +21,5 @@ public class MenuResponse {
         this.status = menu.getStatus().getDesc();
         this.imageUrl = menu.getImageUrl();
     }
+
 }

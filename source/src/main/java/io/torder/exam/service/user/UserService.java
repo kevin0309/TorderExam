@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 사용자관련 비즈니스로직을 구현한 서비스 클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -121,4 +124,5 @@ public class UserService {
         
         return user;
     }
+
 }

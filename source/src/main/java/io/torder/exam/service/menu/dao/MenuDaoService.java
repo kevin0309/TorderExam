@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * MenuRepository 에 직접적으로 접근하는 DAO 서비스클래스
+ */
 @RequiredArgsConstructor
 @Service
 public class MenuDaoService {
@@ -25,4 +28,5 @@ public class MenuDaoService {
     public Menu findMenu(Integer menuSeq) {
         return menuRepository.findBySeq(menuSeq).get();
     }
+
 }

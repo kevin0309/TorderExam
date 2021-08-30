@@ -20,4 +20,5 @@ public enum Role {
         this.code = code;
         this.desc = desc;
     }
+
 }

@@ -38,7 +38,7 @@ public class UserRestController {
     @PostMapping("info")
     public CompletableFuture<ApiResponse<ModResponse>> modInfo(@AuthenticationPrincipal JwtAuthentication auth,
                 @RequestBody ModRequest modRequest) {
-        if (modRequest.getId().equals(auth.getUserId()))
+        if (!modRequest.getId().equals(auth.getUserId()))
             throw new AccessDeniedException("Cannot access other user's info!");
 
         User modUser = userService.modify(auth.getUserId(), modRequest);

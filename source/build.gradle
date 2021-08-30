@@ -5,8 +5,14 @@ plugins {
 }
 
 group = 'io.torder'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.4-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'io.torder.exam.ExamApplication'
+	}
+}
 
 configurations {
 	compileOnly {

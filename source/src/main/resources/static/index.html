@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    
+    <meta name="keyword" content="티오더, 무인주문형플랫폼,무인 주문형 플랫폼, 태블릿주문, 서빙로봇, 바리스타로봇팔, 무인시스템, 24시간 원격 고객센터" />
+    <meta name="title" content="티오더" />
+    <meta name="description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    <meta name="author" content="t-order" />
+
+    <meta property="og:url" content="http://torder.io/" />
+    <meta property="og:type" content="" />
+    <meta property="og:title" content="티오더" />
+    <meta property="og:description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    <meta property="og:image" content="http://torder.io/assets/images/img/img_link_thumbnail.png">
+
+    <meta property="twitter:url" content="http://torder.io/" />
+    <meta property="twitter:title" content="티오더" />
+    <meta property="twitter:description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    
+    <title>Torder Exam</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/css/toastr.min.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/assets/js/toastr.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/assets/js/common.js"></script>
+    <style>
+        body {
+            background-image: url('https://s3.ap-northeast-2.amazonaws.com/images.orderhae.com/tmp/basicBackImg.jpg');
+            background-size: 100vw 100vh;
+            color: white;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        .menu-element {
+            display: inline-block;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .menu-element>img {
+            width: 209px;
+            height: 180px;
+            object-fit: cover;
+        }
+        .menu-element-info-area {
+            text-align: center;
+            width: 209px;
+            height: 100px;
+            background: rgba(0,0,0,0.7);
+            vertical-align: middle;
+            display: table-cell;
+        }
+        footer>button {
+            float: right;
+            margin: 12px 5px;
+        }
+        #menu-cart {
+            position: fixed;
+            right: 0;
+            bottom: 15px;
+            height: calc(100vh - 15px);
+            width: 300px;
+            background: white;
+            color: black;
+            visibility: hidden;
+        }
+        #cart-list {
+            padding: 0 15px;
+            height: calc(100vh - 210px);
+            overflow-y: scroll;
+        }
+        #cart-list::-webkit-scrollbar {
+            display: none;
+        }
+        .cart-element>div:nth-child(1) {
+            margin-bottom: 10px;
+        }
+        .cart-element>div:nth-child(1)>span {
+            display: inline-block;
+            width: 219px;
+        }
+        .cart-element>div:nth-child(2)>button {
+            width: 40px;
+        }
+        #menu-order {
+            position: fixed;
+            right: 0;
+            bottom: 15px;
+            height: calc(100vh - 15px);
+            width: 740px;
+            background: white;
+            color: black;
+            visibility: hidden;
+        }
+        #order-list {
+            padding: 0 15px;
+            height: calc(100vh - 175px);
+            overflow-y: scroll;
+        }
+        #order-list::-webkit-scrollbar {
+            display: none;
+        }
+        .order-element {
+            padding: 0 30px;
+        }
+        .order-element>div>div:nth-child(4) {
+            text-align: right;
+        }
+        .order-element>div>div:nth-child(4)>div {
+            margin-bottom: 5px;
+        }
+        #payment {
+            position: fixed;
+            right: 0;
+            bottom: 15px;
+            height: calc(100vh - 15px);
+            width: 500px;
+            background: white;
+            color: black;
+            visibility: hidden;
+        }
+        #payment-menu-list {
+            padding: 0 15px;
+            height: calc(100vh - 210px);
+            overflow-y: scroll;
+        }
+        #payment-menu-list::-webkit-scrollbar {
+            display: none;
+        }
+        .payment-menu-element {
+            padding: 0 30px;
+        }
+        .payment-menu-element>div>div {
+            text-align: right;
+        }
+        .payment-menu-element>div>div:nth-child(1) {
+            text-align: left;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $('document').ready(function() {
+            checkLogin();
+            navFnObj.init();
+            cartFnObj.refreshCartList();
+        });
+
+        function checkLogin() {
+            if (!$$.checkLogin()) {
+                alert('로그인을 먼저 진행해주세요.');
+                location.href = '/login.html';
+            }
+        }
+
+        function MenuElement(menuObj, navLv1, navLv2) {
+            this.seq = menuObj.seq;
+            this.name = menuObj.name;
+            this.price = menuObj.price;
+            this.status = menuObj.status;
+            this.imageUrl = menuObj.image_url;
+            this.navLv1 = navLv1;
+            this.navLv2 = navLv2;
+        }
+
+        var menuFnObj = {
+            menus: [],
+            findMenuBySeq: function(seq) {
+                var menuElement = null;
+                for (var i in this.menus)
+                    if (this.menus[i].seq === seq)
+                        menuElement = this.menus[i];
+                return menuElement;
+            }
+        }
+
+        var navFnObj = {
+            navMenuList: [],
+            init: function() {
+                $$.ajax('GET', '/api/menu/tree', null, function(json) {
+                    var menus = json.response.children;
+                    var $nav = $('<ul class="navbar-nav"></ul>');
+                    var tempMenus = [];
+                    var tempNavLv1List = [];
+                    for (var i in menus) {
+                        var tempNavLv2List = [];
+                        var $menu = $('<li class="nav-item dropdown active"></li>');
+                        $menu.append('<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' + menus[i].desc + '</a>')
+                        var $submenu = $('<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"></div>');
+                        for (var j in menus[i].children) {
+                            var tempMenuElementList = [];
+                            $submenu.append('<a class="dropdown-item" href="javascript: navFnObj.swapNavMenu('+i+', '+j+')">' + menus[i].children[j].desc + '</a>');
+                            for (var k in menus[i].children[j].menus) {
+                                var tempMenuElement = menus[i].children[j].menus[k];
+                                tempMenus.push(new MenuElement(tempMenuElement, i, j));
+                                tempMenuElementList.push(new MenuElement(tempMenuElement, i, j));
+                            }
+                            tempNavLv2List.push(tempMenuElementList)
+                        }
+                        $menu.append($submenu);
+                        $nav.append($menu);
+                        tempNavLv1List.push(tempNavLv2List)
+                    }
+                    $('#navbarNavDropdown').append($nav);
+                    navFnObj.navMenuList = tempNavLv1List;
+                    menuFnObj.menus = tempMenus;
+                    navFnObj.swapNavMenu(0, 0);
+                });
+            },
+            swapNavMenu: function(navLv1, navLv2) {
+                $('#navLv1-title').text($('#navbarNavDropdown>ul>li:eq('+navLv1+')>a').text());
+                $('#navLv2-title').text($('#navbarNavDropdown>ul>li:eq('+navLv1+')>div>a:eq('+navLv2+')').text());
+                $('#menu-list').empty();
+                for (var i in this.navMenuList[navLv1][navLv2]) {
+                    var tempMenuElement = this.navMenuList[navLv1][navLv2][i];
+                    var $menuElement = $('<div class="menu-element"></div>');
+                    $menuElement.append('<img src="'+tempMenuElement.imageUrl+'">');
+                    $menuElement.append('<div class="menu-element-info-area">' +
+                        tempMenuElement.name + '<br>' + tempMenuElement.price +
+                        '원</div>');
+                    $menuElement.attr('onclick', 'cartFnObj.addToCart('+tempMenuElement.seq+');');
+                    $('#menu-list').append($menuElement);
+                }
+            }
+        }
+
+        var cartFnObj = {
+            openModal: function() {
+                $('#menu-cart').css('visibility', 'visible');
+            },
+            closeModal: function() {
+                $('#menu-cart').css('visibility', 'hidden');
+            },
+            cartList: [],
+            refreshCartList: function() {
+                $('#cart-list').empty();
+                var totalQtt = 0;
+                var totalPrice = 0;
+                for (var i in this.cartList) {
+                    var tempMenuElement = this.cartList[i].menuElement;
+                    var $cartElement = $('<div class="cart-element"></div>');
+                    var $firstLine = $('<div></div>');
+                    $firstLine.append('<span>'+tempMenuElement.name+'</span>');
+                    $firstLine.append('<button class="btn btn-outline-danger btn-sm" onclick="cartFnObj.delFromCart('+tempMenuElement.seq+');">삭제</button>');
+                    $cartElement.append($firstLine);
+                    var $secondLine = $('<div></div>');
+                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.subtractFromCart('+tempMenuElement.seq+');">-</button>');
+                    $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    $secondLine.append('<span>'+this.cartList[i].qtt+'</span>');
+                    $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.addToCart('+tempMenuElement.seq+');">+</button>');
+                    $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
+                    $secondLine.append('<span>'+(tempMenuElement.price * this.cartList[i].qtt)+'원</span>');
+                    $cartElement.append($secondLine);
+                    if (i != 0)
+                        $('#cart-list').append('<hr>');
+                    $('#cart-list').append($cartElement);
+                    totalQtt += this.cartList[i].qtt;
+                    totalPrice += tempMenuElement.price * this.cartList[i].qtt;
+                }
+                $('#cart-total>span:eq(0)').text(this.cartList.length);
+                $('#cart-total>span:eq(1)').text(totalQtt);
+                $('#cart-total>span:eq(2)').text(totalPrice);
+            },
+            addToCart: function(menuElementSeq) {
+                this.openModal();
+                var menuElement = menuFnObj.findMenuBySeq(menuElementSeq);
+                for (var i in this.cartList) {
+                    if (this.cartList[i].menuElement.name === menuElement.name) {
+                        if (this.cartList[i].qtt < 9) {
+                            this.cartList[i].qtt++;
+                            this.refreshCartList();
+                            return;
+                        }
+                        else {
+                            toastr['warning']('더 이상 담을 수 없습니다.');
+                            return;
+                        }
+                    }
+                }
+                this.cartList.push({menuElement: menuElement, qtt: 1});
+                this.refreshCartList();
+            },
+            subtractFromCart: function(menuElementSeq) {
+                var menuElement = menuFnObj.findMenuBySeq(menuElementSeq);
+                for (var i in this.cartList) {
+                    if (this.cartList[i].menuElement.name === menuElement.name) {
+                        if (this.cartList[i].qtt > 1) {
+                            this.cartList[i].qtt--;
+                            this.refreshCartList();
+                            return;
+                        }
+                        else {
+                            this.cartList.splice(i, 1);
+                            this.refreshCartList();
+                            return;
+                        }
+                    }
+                }
+            },
+            delFromCart: function(menuElementSeq) {
+                var menuElement = menuFnObj.findMenuBySeq(menuElementSeq);
+                for (var i in this.cartList) {
+                    if (this.cartList[i].menuElement.name === menuElement.name) {
+                        this.cartList.splice(i, 1);
+                        this.refreshCartList();
+                        return;
+                    }
+                }
+            },
+            orderAll: function() {
+                var param = {};
+                param.menus = [];
+
+                for (var i in this.cartList) {
+                    var tempMenu = {};
+                    tempMenu.menu_seq = this.cartList[i].menuElement.seq;
+                    tempMenu.qtt = this.cartList[i].qtt;
+                    param.menus.push(tempMenu);
+                }
+
+                if (param.menus.length == 0)
+                    return;
+                $$.ajax('PUT', '/api/menu/order', param, function(json) {
+                    toastr["success"]('주문이 완료되었습니다.')
+                    cartFnObj.cartList = [];
+                    cartFnObj.refreshCartList();
+                    cartFnObj.closeModal();
+                    orderFnObj.openModal();
+                });
+            }
+        }
+
+        var orderFnObj = {
+            openModal: function() {
+                this.getOrders();
+                $('#menu-order').css('visibility', 'visible');
+            },
+            closeModal: function() {
+                $('#menu-order').css('visibility', 'hidden');
+            },
+            orderList: [],
+            getOrders: function() {
+                $$.ajax('GET', '/api/menu/order', null, function(json) {
+                    var orders = json.response.orders;
+                    var orderList = [];
+                    for (var i in orders) {
+                        var order = {};
+                        order.timestamp = orders[i].timestamp;
+                        order.status = orders[i].status;
+                        order.menus = [];
+                        for (var j in orders[i].order_menus) {
+                            var menu = {};
+                            menu.name = orders[i].order_menus[j].menu.name;
+                            menu.qtt = orders[i].order_menus[j].qtt;
+                            order.menus.push(menu);
+                        }
+                        orderList.push(order);
+                    }
+                    orderFnObj.orderList = orderList;
+                    orderFnObj.refreshOrderList();
+                });
+            },
+            refreshOrderList: function() {
+                $('#order-list').empty();
+                for (var i in this.orderList) {
+                    var order = this.orderList[i]
+                    var $orderElement = $('<div class="order-element"></div>')
+                    var $row = $('<div class="row"></div>');
+                    $row.append('<div class="col-1">'+(this.orderList.length - i)+'</div>');
+                    $row.append('<div class="col-2">'+order.status+'</div>');
+                    $row.append('<div class="col-3">'+order.timestamp+'</div>');
+
+                    var $menuListCol = $('<div class="col"></div>');
+                    for (var j in order.menus) {
+                        var menu = order.menus[j];
+                        var $menuRow = $('<div></div>');
+                        $menuRow.append('<span>'+menu.name+'&nbsp;&nbsp;</span>');
+                        $menuRow.append('<span>'+menu.qtt+'개</span>');
+                        $menuListCol.append($menuRow);
+                    }
+                    $row.append($menuListCol);
+                    $orderElement.append($row);
+                    if (i != 0)
+                        $('#order-list').append('<hr>');
+                    $('#order-list').append($orderElement);
+                }
+            }
+        }
+
+        var paymentFnObj = {
+            openModal: function() {
+                this.getPayments();
+                $('#payment').css('visibility', 'visible');
+            },
+            closeModal: function() {
+                $('#payment').css('visibility', 'hidden');
+            },
+            paymentList: [],
+            getPayments: function() {
+                $$.ajax('GET', '/api/menu/payment', null, function(json) {
+                    paymentFnObj.paymentList = json.response;
+                    paymentFnObj.refreshPaymentList();
+                });
+            },
+            refreshPaymentList: function() {
+                $('#payment-menu-list').empty();
+                var totalQtt = 0;
+                var totalPrice = 0;
+                for (var i in this.paymentList) {
+                    var order = this.paymentList[i];
+                    var $row = $('<div class="row"></div>');
+                    $row.append('<div class="col">'+order.menu.name+'</div>');
+                    $row.append('<div class="col-3">'+order.menu.price+'</div>');
+                    $row.append('<div class="col-2">'+order.qtt+'</div>');
+                    $row.append('<div class="col-3">'+(order.menu.price * order.qtt)+'</div>');
+
+                    var $element = $('<div class="payment-menu-element"></div>');
+                    $element.append($row);
+
+                    if (i != 0)
+                        $('#payment-menu-list').append('<hr>');
+                    $('#payment-menu-list').append($element);
+                    totalQtt += order.qtt;
+                    totalPrice += order.menu.price * order.qtt;
+                }
+                $('#payment-total>span:eq(0)').text(this.paymentList.length);
+                $('#payment-total>span:eq(1)').text(totalQtt);
+                $('#payment-total>span:eq(2)').text(totalPrice);
+            },
+            payAll: function() {
+                $$.ajax('PUT', '/api/menu/payment', null, function(json) {
+                    paymentFnObj.getPayments();
+                    paymentFnObj.closeModal();
+                    toastr["success"]('결제가 완료되었습니다.');
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+<header class="navbar navbar-expand-lg navbar-dark" style="position: fixed; width: 100vw; background: rgba(0,0,0,0.5);">
+    <span class="navbar-toggler-icon" onclick="$$.logout()"></span>
+    <a class="navbar-brand" href="/" style="margin-left: 1rem;width: 100px;height: 46px;background: url('http://torder.io/images/bg_icon.png') no-repeat -50px -50px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+</header>
+<article class="container" style="padding-top: 70px; padding-bottom: 90px; min-width: 992px;">
+    <div style="border-left: 5px solid #f00; padding-left: 15px; margin: 30px 0;">
+        <h5 style="color: #f00;" id="navLv1-title"></h5>
+        <h2 style="margin-left: 10px;" id="navLv2-title"></h2>
+    </div>
+    <div id="menu-list"></div>
+</article>
+<footer style="position: fixed; bottom: 0;  width: 100vw; background: rgba(0,0,0,0.5); height: 62px; padding-right: 15px;">
+    <button class="btn btn-dark" onclick="cartFnObj.openModal()">장바구니</button>
+    <button class="btn btn-dark" onclick="orderFnObj.openModal()">주문내역</button>
+    <button class="btn btn-dark" onclick="paymentFnObj.openModal()">계산서</button>
+</footer>
+<aside id="menu-cart">
+    <h4 style="padding: 15px;">장바구니</h4>
+    <div id="cart-list"></div>
+    <div style="text-align: center; font-weight: bold;">
+        <hr>
+        <div style="margin-bottom: 10px;" id="cart-total">
+            <span>0</span>가지 <span>0</span>개 합계 <span>0</span>원
+        </div>
+        <button class="btn btn-dark btn-lg" onclick="cartFnObj.closeModal()">닫기</button>
+        <button class="btn btn-danger btn-lg" onclick="cartFnObj.orderAll()">주문하기</button>
+    </div>
+</aside>
+<aside id="menu-order">
+    <h4 style="padding: 15px;">주문내역</h4>
+    <div id="order-list" class="container"></div>
+    <div style="text-align: center; font-weight: bold;">
+        <hr>
+        <button class="btn btn-dark btn-lg" onclick="orderFnObj.closeModal()">닫기</button>
+    </div>
+</aside>
+<aside id="payment">
+    <h4 style="padding: 15px;">계산서</h4>
+    <div id="payment-menu-list"></div>
+    <div style="text-align: center; font-weight: bold;">
+        <hr>
+        <div style="margin-bottom: 10px;" id="payment-total">
+            <span>0</span>가지 <span>0</span>개 합계 <span>0</span>원
+        </div>
+        <button class="btn btn-dark btn-lg" onclick="paymentFnObj.closeModal()">닫기</button>
+        <button class="btn btn-danger btn-lg" onclick="paymentFnObj.payAll()">결제하기</button>
+    </div>
+</aside>
+</body>
+</html>

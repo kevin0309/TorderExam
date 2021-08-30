@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db.park-yh.com:3306/torder_exam?autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: torder_exam_db
+    password: 1234
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+async:
+  thread:
+    threadNamePrefix: async-thread-
+    corePoolSize: 20
+    maxPoolSize: 100
+    queueCapacity: 1000
+
+jwt:
+  token:
+    headerKey: api-key
+    issuer: torder-exam-YH
+    clientSecret: torder001
+    expirySeconds: 3600

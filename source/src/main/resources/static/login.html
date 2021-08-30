@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    
+    <meta name="keyword" content="티오더, 무인주문형플랫폼,무인 주문형 플랫폼, 태블릿주문, 서빙로봇, 바리스타로봇팔, 무인시스템, 24시간 원격 고객센터" />
+    <meta name="title" content="티오더" />
+    <meta name="description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    <meta name="author" content="t-order" />
+
+    <meta property="og:url" content="http://torder.io/" />
+    <meta property="og:type" content="" />
+    <meta property="og:title" content="티오더" />
+    <meta property="og:description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    <meta property="og:image" content="http://torder.io/assets/images/img/img_link_thumbnail.png">
+
+    <meta property="twitter:url" content="http://torder.io/" />
+    <meta property="twitter:title" content="티오더" />
+    <meta property="twitter:description" content="2,000만 건의 누적 주문건수, 태블릿주문/서빙로봇(팔) 유명 프랜차이즈들이 먼저 선택했습니다. IT 혁신, 티오더의 서비스를 만나보세요!" />
+    
+    <title>Torder Exam</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/toastr.min.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/toastr.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/assets/js/common.js"></script>
+    <style type="text/css">
+        .panel-login {
+            margin-top: calc(50vh - 175px);
+            border-color: #ccc;
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+        }
+        .panel-login>.panel-heading {
+            color: #00415d;
+            background-color: #fff;
+            border-color: #fff;
+            text-align:center;
+        }
+        .panel-login>.panel-heading a{
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 15px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        .panel-login>.panel-heading a.active{
+            color: #029f5b;
+            font-size: 18px;
+        }
+        .panel-login>.panel-heading hr{
+            margin-top: 10px;
+            margin-bottom: 0px;
+            clear: both;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        }
+        .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+            height: 45px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        .panel-login input:hover,
+        .panel-login input:focus {
+            outline:none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border-color: #ccc;
+        }
+        .btn-login {
+            background-color: #59B2E0;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: auto;
+            font-weight: normal;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border-color: #59B2E6;
+        }
+        .btn-login:hover,
+        .btn-login:focus {
+            color: #fff;
+            background-color: #53A3CD;
+            border-color: #53A3CD;
+        }
+        .forgot-password {
+            text-decoration: underline;
+            color: #888;
+        }
+        .forgot-password:hover,
+        .forgot-password:focus {
+            text-decoration: underline;
+            color: #666;
+        }
+
+        .btn-register {
+            background-color: #1CB94E;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: auto;
+            font-weight: normal;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border-color: #1CB94A;
+        }
+        .btn-register:hover,
+        .btn-register:focus {
+            color: #fff;
+            background-color: #1CA347;
+            border-color: #1CA347;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $('document').ready(function() {
+            $('#login-form-link').click(function(e) {
+                $("#login-form").delay(100).fadeIn(100);
+                $("#register-form").fadeOut(100);
+                $('#register-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+            $('#register-form-link').click(function(e) {
+                $("#register-form").delay(100).fadeIn(100);
+                $("#login-form").fadeOut(100);
+                $('#login-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+        });
+
+        function login() {
+            var param = {};
+            param.id = $('input[name=id]').val();
+            param.pw = $('input[name=pw]').val();
+
+            $$.ajax('POST', '/api/user/login', param,
+            function(json) {
+                $.cookie($$.JWT_TOKEN_COOKIE_KEY, json.response)
+                location.href = '/';
+            }, '로그인에 실패했습니다.');
+        }
+
+        function join() {
+            var param = {};
+            param.id = $('input[name=join_id]').val().trim();
+            param.pw = $('input[name=join_pw]').val().trim();
+            param.pw_confirm = $('input[name=join_pw_confirm]').val().trim();
+
+            $$.ajax('PUT', '/api/user/join', param,
+            function(json) {
+                alert('성공적으로 회원가입이 되었습니다!')
+                location.href = '/login.html';
+            }, '회원가입에 실패했습니다.');
+        }
+
+    </script>
+</head>
+<body>
+<article class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Login</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" id="register-form-link">Register</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" action="javascript:login();" role="form" style="display: block;">
+                                <div class="form-group">
+                                    ID<input type="text" name="id" tabindex="1" class="form-control" placeholder="User ID" value="" pattern="^[a-z][a-z|_|\-|0-9]{4,19}$" pattern="^[a-z][a-z|_|\-|0-9]{4,19}$">
+                                </div>
+                                <div class="form-group">
+                                    Password<input type="password" name="pw" tabindex="2" class="form-control" placeholder="Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <a onclick="alert('미구현')" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="register-form" action="javascript:join();" role="form" style="display: none;">
+                                <div class="form-group">
+                                    ID<input type="text" name="join_id" tabindex="1" class="form-control" placeholder="ID (영문 소문자 + 숫자 조합 5~20자)" value="" pattern="^[a-z][a-z|_|\-|0-9]{4,19}$" required>
+                                </div>
+                                <div class="form-group">
+                                    Password<input type="password" name="join_pw" tabindex="1" class="form-control" placeholder="PW (영문 소문자 + 대문자 + 숫자 + 특문 조합 8자 이상)" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required>
+                                </div>
+                                <div class="form-group">
+                                    Confirm Password<input type="password" name="join_pw_confirm" tabindex="1" class="form-control" placeholder="PW Confirm" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+</body>
+</html>

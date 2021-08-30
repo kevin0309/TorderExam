@@ -6,7 +6,7 @@
 - 회원 인증이 필요한 API의 경우 다음과 같은 header를 요구함
     key|type|value
     ---|---|---
-    `api-key`|`String`|'Bearer {JWT token}'
+    `api-key`|String|'Bearer {JWT token}'
 - `api-key` value의 예시
     ```
     Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6InRvcmRlci1leGFtLVlIIiwiZXhwIjoxNjMwMzQ1ODI0LCJpYXQiOjE2MzAzNDIyMjQsInVzZXJJZCI6InRlc3RlciJ9.8O0qHDSwBddiDxMgFWEWX54kRv2Jk2s15e31KzitcFqPCX6aUtdNMegq_gnRWqra8KnsZMYgf7YVcByjowhMXw
@@ -19,9 +19,9 @@
 - 데이터 형식은 다음과 같음
     key|type|value
     ---|---|---
-    `response`|(`AnyType`)|요청에 대응하는 결과 / 응답실패시 null
-    `error`|`Object`|응답실패시 HTTP 에러코드 및 실패원인 / 응답성공시 null
-    `timestamp`|`String`|서버 응답처리 완료시각
+    `response`|(AnyType)|요청에 대응하는 결과 / 응답실패시 null
+    `error`|Object|응답실패시 HTTP 에러코드 및 실패원인 / 응답성공시 null
+    `timestamp`|String|서버 응답처리 완료시각
 - 성공예시 (로그인 요청의 경우)
     ```json
     {

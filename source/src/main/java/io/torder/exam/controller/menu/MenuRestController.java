@@ -60,7 +60,7 @@ public class MenuRestController {
     }
 
     /**
-     * 새로운 결제내역을 처리하는 요청
+     * 계산서를 기반으로 결제요청을 생성하는 요청
      */
     @Async
     @PutMapping("payment")
@@ -69,7 +69,7 @@ public class MenuRestController {
     }
 
     /**
-     * 주문목록을 기반으로 결제내역을 조회하는 요청
+     * 주문목록을 기반으로 계산서를 조회하는 요청
      */
     @Async
     @GetMapping("payment")

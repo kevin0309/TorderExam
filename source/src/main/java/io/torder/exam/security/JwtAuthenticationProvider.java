@@ -32,7 +32,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             
             //새로운 토큰 생성 (검증이 완료된 사용자를 뜻함)
             JwtAuthenticationToken authenticated =
-                    new JwtAuthenticationToken(new JwtAuthentication(user.getSeq(), user.getUserId()),
+                    new JwtAuthenticationToken(new JwtAuthentication(user.getUserId()),
                             null, AuthorityUtils.createAuthorityList(user.getRole().getCode()));
 
             //JWT token도 새로 발급

@@ -7,6 +7,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthentication {
 
-    private final Integer seq;
     private final String userId;
 }

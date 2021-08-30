@@ -1,6 +1,7 @@
 package io.torder.exam.security;
 
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import io.torder.exam.security.dto.JwtAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -61,7 +62,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
                     if (userId != null && authorities.size() > 0) {
                         JwtAuthenticationToken jwtAuthentication =
-                                new JwtAuthenticationToken(userId, null, authorities);
+                                new JwtAuthenticationToken(new JwtAuthentication(userId), null, authorities);
                         jwtAuthentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
 
                         SecurityContextHolder.getContext().setAuthentication(jwtAuthentication);

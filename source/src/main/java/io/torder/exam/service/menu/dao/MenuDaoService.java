@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -19,5 +20,9 @@ public class MenuDaoService {
      */
     public List<Menu> findAll() {
         return menuRepository.findAll();
+    }
+
+    public Menu findMenu(Integer menuSeq) {
+        return menuRepository.findBySeq(menuSeq).get();
     }
 }

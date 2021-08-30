@@ -1,5 +1,6 @@
 package io.torder.exam.controller.menu.dto;
 
+import io.torder.exam.model.menu.Menu;
 import lombok.Getter;
 
 @Getter
@@ -11,12 +12,12 @@ public class MenuResponse {
     private final String status;
     private final String imageUrl;
 
-    public MenuResponse(int seq, String name, int typeSeq, int price, String status, String imageUrl) {
-        this.seq = seq;
-        this.name = name;
-        this.typeSeq = typeSeq;
-        this.price = price;
-        this.status = status;
-        this.imageUrl = imageUrl;
+    public MenuResponse(Menu menu) {
+        this.seq = menu.getSeq();
+        this.name = menu.getName();
+        this.typeSeq = menu.getType().getSeq();
+        this.price = menu.getPrice();
+        this.status = menu.getStatus().getDesc();
+        this.imageUrl = menu.getImageUrl();
     }
 }

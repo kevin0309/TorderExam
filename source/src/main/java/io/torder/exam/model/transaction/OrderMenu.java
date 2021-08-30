@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "order")
+@Table(name = "ordering_menu")
 public class OrderMenu extends BaseEntity<OrderMenu> {
 
     @ManyToOne(fetch = FetchType.LAZY)

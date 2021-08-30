@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "order")
+@Table(name = "ordering")
 public class Order extends BaseEntity<Order> {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,6 +26,10 @@ public class Order extends BaseEntity<Order> {
     @Builder
     public Order(User user, OrderStatus status) {
         this.user = user;
+        this.status = status;
+    }
+
+    public void updateStatus(OrderStatus status) {
         this.status = status;
     }
 }

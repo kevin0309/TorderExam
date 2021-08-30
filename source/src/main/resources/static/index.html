@@ -107,23 +107,41 @@
         #order-list::-webkit-scrollbar {
             display: none;
         }
+        .order-element {
+            padding: 0 30px;
+        }
+        .order-element>div>div:nth-child(4) {
+            text-align: right;
+        }
+        .order-element>div>div:nth-child(4)>div {
+            margin-bottom: 5px;
+        }
         #payment {
             position: fixed;
             right: 0;
             bottom: 15px;
             height: calc(100vh - 15px);
-            width: 740px;
+            width: 500px;
             background: white;
             color: black;
             visibility: hidden;
         }
         #payment-menu-list {
             padding: 0 15px;
-            height: calc(100vh - 175px);
+            height: calc(100vh - 210px);
             overflow-y: scroll;
         }
         #payment-menu-list::-webkit-scrollbar {
             display: none;
+        }
+        .payment-menu-element {
+            padding: 0 30px;
+        }
+        .payment-menu-element>div>div {
+            text-align: right;
+        }
+        .payment-menu-element>div>div:nth-child(1) {
+            text-align: left;
         }
     </style>
     <script type="text/javascript">
@@ -233,11 +251,11 @@
                     $firstLine.append('<button class="btn btn-outline-danger btn-sm" onclick="cartFnObj.delFromCart('+tempMenuElement.seq+');">삭제</button>');
                     $cartElement.append($firstLine);
                     var $secondLine = $('<div></div>');
-                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.addToCart('+tempMenuElement.seq+');">+</button>');
+                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.subtractFromCart('+tempMenuElement.seq+');">-</button>');
                     $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
                     $secondLine.append('<span>'+this.cartList[i].qtt+'</span>');
                     $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
-                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.subtractFromCart('+tempMenuElement.seq+');">-</button>');
+                    $secondLine.append('<button class="btn btn-dark" onclick="cartFnObj.addToCart('+tempMenuElement.seq+');">+</button>');
                     $secondLine.append('&nbsp;&nbsp;&nbsp;&nbsp;');
                     $secondLine.append('<span>'+(tempMenuElement.price * this.cartList[i].qtt)+'원</span>');
                     $cartElement.append($secondLine);
@@ -296,28 +314,136 @@
                         return;
                     }
                 }
+            },
+            orderAll: function() {
+                var param = {};
+                param.menus = [];
+
+                for (var i in this.cartList) {
+                    var tempMenu = {};
+                    tempMenu.menu_seq = this.cartList[i].menuElement.seq;
+                    tempMenu.qtt = this.cartList[i].qtt;
+                    param.menus.push(tempMenu);
+                }
+
+                console.log(JSON.stringify(param));
+                if (param.menus.length == 0)
+                    return;
+                $$.ajax('PUT', '/api/menu/order', param, function(json) {
+                    toastr["success"]('주문이 완료되었습니다.')
+                    cartFnObj.cartList = [];
+                    cartFnObj.refreshCartList();
+                    cartFnObj.closeModal();
+                    orderFnObj.openModal();
+                });
             }
         }
 
         var orderFnObj = {
             openModal: function() {
+                this.getOrders();
                 $('#menu-order').css('visibility', 'visible');
             },
             closeModal: function() {
                 $('#menu-order').css('visibility', 'hidden');
             },
             orderList: [],
-            addToOrder: function() {
+            getOrders: function() {
+                $$.ajax('GET', '/api/menu/order', null, function(json) {
+                    var orders = json.response.orders;
+                    var orderList = [];
+                    for (var i in orders) {
+                        var order = {};
+                        order.timestamp = orders[i].timestamp;
+                        order.status = orders[i].status;
+                        order.menus = [];
+                        for (var j in orders[i].order_menus) {
+                            var menu = {};
+                            menu.name = orders[i].order_menus[j].menu.name;
+                            menu.qtt = orders[i].order_menus[j].qtt;
+                            order.menus.push(menu);
+                        }
+                        orderList.push(order);
+                    }
+                    orderFnObj.orderList = orderList;
+                    orderFnObj.refreshOrderList();
+                });
+            },
+            refreshOrderList: function() {
+                $('#order-list').empty();
+                for (var i in this.orderList) {
+                    var order = this.orderList[i]
+                    var $orderElement = $('<div class="order-element"></div>')
+                    var $row = $('<div class="row"></div>');
+                    $row.append('<div class="col-1">'+(this.orderList.length - i)+'</div>');
+                    $row.append('<div class="col-2">'+order.status+'</div>');
+                    $row.append('<div class="col-3">'+order.timestamp+'</div>');
 
+                    var $menuListCol = $('<div class="col"></div>');
+                    for (var j in order.menus) {
+                        var menu = order.menus[j];
+                        var $menuRow = $('<div></div>');
+                        $menuRow.append('<span>'+menu.name+'&nbsp;&nbsp;</span>');
+                        $menuRow.append('<span>'+menu.qtt+'개</span>');
+                        $menuListCol.append($menuRow);
+                    }
+                    $row.append($menuListCol);
+                    $orderElement.append($row);
+                    if (i != 0)
+                        $('#order-list').append('<hr>');
+                    $('#order-list').append($orderElement);
+                }
             }
         }
 
         var paymentFnObj = {
             openModal: function() {
+                this.getPayments();
                 $('#payment').css('visibility', 'visible');
             },
             closeModal: function() {
                 $('#payment').css('visibility', 'hidden');
+            },
+            paymentList: [],
+            getPayments: function() {
+                $$.ajax('GET', '/api/menu/payment', null, function(json) {
+                    console.log(json);
+                    paymentFnObj.paymentList = json.response;
+                    paymentFnObj.refreshPaymentList();
+                });
+            },
+            refreshPaymentList: function() {
+                $('#payment-menu-list').empty();
+                var totalQtt = 0;
+                var totalPrice = 0;
+                for (var i in this.paymentList) {
+                    var order = this.paymentList[i];
+                    var $row = $('<div class="row"></div>');
+                    $row.append('<div class="col">'+order.menu.name+'</div>');
+                    $row.append('<div class="col-3">'+order.menu.price+'</div>');
+                    $row.append('<div class="col-2">'+order.qtt+'</div>');
+                    $row.append('<div class="col-3">'+(order.menu.price * order.qtt)+'</div>');
+
+                    var $element = $('<div class="payment-menu-element"></div>');
+                    $element.append($row);
+
+                    if (i != 0)
+                        $('#payment-menu-list').append('<hr>');
+                    $('#payment-menu-list').append($element);
+                    totalQtt += order.qtt;
+                    totalPrice += order.menu.price * order.qtt;
+                }
+                $('#payment-total>span:eq(0)').text(this.paymentList.length);
+                $('#payment-total>span:eq(1)').text(totalQtt);
+                $('#payment-total>span:eq(2)').text(totalPrice);
+            },
+            payAll: function() {
+                $$.ajax('PUT', '/api/menu/payment', null, function(json) {
+                    console.log(json);
+                    paymentFnObj.getPayments();
+                    paymentFnObj.closeModal();
+                    toastr["success"]('결제가 완료되었습니다.');
+                });
             }
         }
 
@@ -341,8 +467,8 @@
 </article>
 <footer style="position: fixed; bottom: 0;  width: 100vw; background: rgba(0,0,0,0.5); height: 62px; padding-right: 15px;">
     <button class="btn btn-dark" onclick="cartFnObj.openModal()">장바구니</button>
-    <button class="btn btn-dark" onclick="orderFnObj.openModal()">계산서</button>
-    <button class="btn btn-dark" onclick="paymentFnObj.openModal()">주문내역</button>
+    <button class="btn btn-dark" onclick="orderFnObj.openModal()">주문내역</button>
+    <button class="btn btn-dark" onclick="paymentFnObj.openModal()">계산서</button>
 </footer>
 <aside id="menu-cart">
     <h4 style="padding: 15px;">장바구니</h4>
@@ -350,41 +476,15 @@
     <div style="text-align: center; font-weight: bold;">
         <hr>
         <div style="margin-bottom: 10px;" id="cart-total">
-            <span>1</span>가지 <span>1</span>개 합계 <span>100</span>원
+            <span>0</span>가지 <span>0</span>개 합계 <span>0</span>원
         </div>
         <button class="btn btn-dark btn-lg" onclick="cartFnObj.closeModal()">닫기</button>
-        <button class="btn btn-danger btn-lg">주문하기</button>
+        <button class="btn btn-danger btn-lg" onclick="cartFnObj.orderAll()">주문하기</button>
     </div>
 </aside>
 <aside id="menu-order">
     <h4 style="padding: 15px;">주문내역</h4>
-    <div id="order-list">
-        <div class="order-element">
-            <div>
-                <span>메뉴명</span>
-                <button class="btn btn-outline-danger btn-sm">삭제</button>
-            </div>
-            <div>
-                <button class="btn btn-dark">+</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span>1</span>개&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark">-</button>
-                <span>메뉴가격</span>원
-            </div>
-        </div>
-        <hr>
-        <div class="order-element">
-            <div>
-                <span>메뉴명</span>
-                <button class="btn btn-outline-danger btn-sm">삭제</button>
-            </div>
-            <div>
-                <button class="btn btn-dark">+</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span>1</span>개&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark">-</button>
-                <span>메뉴가격</span>원
-            </div>
-        </div>
-    </div>
+    <div id="order-list" class="container"></div>
     <div style="text-align: center; font-weight: bold;">
         <hr>
         <button class="btn btn-dark btn-lg" onclick="orderFnObj.closeModal()">닫기</button>
@@ -392,37 +492,14 @@
 </aside>
 <aside id="payment">
     <h4 style="padding: 15px;">계산서</h4>
-    <div id="payment-menu-list">
-        <div class="payment-menu-element">
-            <div>
-                <span>메뉴명</span>
-                <button class="btn btn-outline-danger btn-sm">삭제</button>
-            </div>
-            <div>
-                <button class="btn btn-dark">+</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span>1</span>개&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark">-</button>
-                <span>메뉴가격</span>원
-            </div>
-        </div>
-        <hr>
-        <div class="payment-menu-element">
-            <div>
-                <span>메뉴명</span>
-                <button class="btn btn-outline-danger btn-sm">삭제</button>
-            </div>
-            <div>
-                <button class="btn btn-dark">+</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span>1</span>개&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-dark">-</button>
-                <span>메뉴가격</span>원
-            </div>
-        </div>
-    </div>
+    <div id="payment-menu-list"></div>
     <div style="text-align: center; font-weight: bold;">
         <hr>
+        <div style="margin-bottom: 10px;" id="payment-total">
+            <span>0</span>가지 <span>0</span>개 합계 <span>0</span>원
+        </div>
         <button class="btn btn-dark btn-lg" onclick="paymentFnObj.closeModal()">닫기</button>
-        <button class="btn btn-danger btn-lg">결제하기</button>
+        <button class="btn btn-danger btn-lg" onclick="paymentFnObj.payAll()">결제하기</button>
     </div>
 </aside>
 </body>

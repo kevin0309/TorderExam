@@ -6,9 +6,8 @@ import lombok.Getter;
 public enum OrderStatus {
 
     ACCEPT("주문접수"),
-    COOKING("조리중"),
-    DELIVERED("식사중"),
-    PAID("결제완료");
+    PAID("결제완료"),
+    CANCELLED("취소");
 
     private final String desc;
 

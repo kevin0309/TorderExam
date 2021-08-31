@@ -61,9 +61,9 @@ java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
     https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/resources/static/login.html
 - 메인 페이지의 구현
     https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/resources/static/index.html
-    - 장바구니 기능은 JS만을 사용해 구현되었음 (서버통신X)
     1. 메뉴 목록의 조회
     2. 장바구니
+       - 장바구니 기능은 JS만을 사용해 구현되었음 (서버통신X)
     3. 주문목록
     4. 계산서
 ## 실행 결과 화면

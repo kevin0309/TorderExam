@@ -1,6 +1,9 @@
 package io.torder.exam.security.errorHandler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.torder.exam.controller.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -17,13 +20,15 @@ import java.io.IOException;
 @Component
 public class UnauthorizedEntryPointHandler implements AuthenticationEntryPoint {
 
+    private final ObjectMapper objectMapper;
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setHeader("content-type", "application/json");
-        response.getWriter().write("Authentication error!\nHTTP status code : " +
-                HttpServletResponse.SC_UNAUTHORIZED + " Unauthorized");
+        ApiResponse apiResponse = ApiResponse.ERROR(HttpStatus.UNAUTHORIZED, "Authentication error! (cause: Unauthorized)");
+        response.getWriter().write(objectMapper.writeValueAsString(apiResponse));
         response.getWriter().flush();
         response.getWriter().close();
     }

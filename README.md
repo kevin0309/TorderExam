@@ -100,47 +100,47 @@ java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
     4. 계산서
 ## 실행 결과 화면
 - 로그인 화면
-    1. 기본(로그인)
+    1. 기본(로그인)  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4/1-%EA%B8%B0%EB%B3%B8.JPG?raw=true)
-    2. 회원가입
+    2. 회원가입  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4/2-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.JPG?raw=true)
         - 회원가입폼은 화면에 표시된 바와 같이 정규식을 통해 필터링하는 기능이 구현되어있음
-    3. 회원가입 실패
+    3. 회원가입 실패  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4/3-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EC%8B%A4%ED%8C%A8.JPG?raw=true)
         - API error의 경우 프론트단에서는 따로 처리하는 로직을 구현하지 않고 그대로 보여주었음 (개발용)
-    4. 회원가입 성공
+    4. 회원가입 성공  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4/4-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%20%EC%84%B1%EA%B3%B5%EB%A9%94%EC%8B%9C%EC%A7%80.JPG?raw=true)
         - 회원가입 성공시 위와 같은 알림메세지 출력후 로그인화면으로 이동됨
-    5. 로그인 실패
+    5. 로그인 실패  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A1%9C%EA%B7%B8%EC%9D%B8%ED%99%94%EB%A9%B4/5-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%8B%A4%ED%8C%A8.JPG?raw=true)
-    6. 로그인 성공
+    6. 로그인 성공  
         - 로그인을 성공하면 메인페이지로 이동된다.
 - 메인 화면
-    1. 기본
+    1. 기본  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/1-%EA%B8%B0%EB%B3%B8.JPG?raw=true)
-    2. 메뉴선택
+    2. 메뉴선택  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/2-%EB%A9%94%EB%89%B4%EC%84%A0%ED%83%9D.JPG?raw=true)
         - 각각의 메뉴들은 API Server를 통해 받아오기 떄문에 실시간으로 변경점이 반영됨
-    3. 다른 메뉴로 이동
+    3. 다른 메뉴로 이동  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/3-%EB%8B%A4%EB%A5%B8%EB%A9%94%EB%89%B4%EC%9D%B4%EB%8F%99.JPG?raw=true)
-    4. 장바구니
+    4. 장바구니  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/4-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88%EC%97%90%20%EB%8B%B4%EA%B8%B0.JPG?raw=true)
         - 음식 이미지를 클릭시 장바구니에 담기게 됨
         - 장바구니에 있는 `+`, `-`, `삭제` 버튼을 통해 추가적인 조작이 가능
-    5. 장바구니에서 주문하기
+    5. 장바구니에서 주문하기  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/5-%EC%A3%BC%EB%AC%B8%ED%95%98%EA%B8%B0.JPG?raw=true)
         - 장바구니에서 `주문하기` 버튼 클릭 시 주문내역 화면으로 전환되며 주문내역을 확인할 수 있음
-    6. 추가 주문접수
+    6. 추가 주문접수  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/6-%EC%B6%94%EA%B0%80%20%EC%A3%BC%EB%AC%B8%EC%A0%91%EC%88%98.JPG?raw=true)
         - 추가로 주문을 접수한 뒤 주문내역 화면
         - 여러개의 주문이 표시되는 것을 확인할 수 있음
-    7. 계산서
+    7. 계산서  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/7-%EA%B3%84%EC%82%B0%EC%84%9C%20%ED%99%95%EC%9D%B8.JPG?raw=true)
         - 계산서는 주문내역을 기반으로 주문한 모든 메뉴가 정리되어 나타나게됨
-    8. 결제완료
+    8. 결제완료  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/8-%EA%B2%B0%EC%A0%9C%EC%99%84%EB%A3%8C.JPG?raw=true)
         - 계산서의 `결제하기` 버튼을 클릭하여 결제를 진행할 수 있음
         - 실제 로직상으로는 결제요청이 새로 생기는 단계지만 해당 어플리케이션은 이를 결제 완료되었다고 가정함
-    9. 결제완료 이후 주문내역
+    9. 결제완료 이후 주문내역  
         ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/%EA%B2%B0%EA%B3%BC%ED%99%94%EB%A9%B4/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4/9-%EA%B2%B0%EC%A0%9C%EC%99%84%EB%A3%8C%20%EC%9D%B4%ED%9B%84%20%EC%A3%BC%EB%AC%B8%EB%82%B4%EC%97%AD.JPG?raw=true)
         - 결제완료 후 주문내역이 비어있는것을 확인할 수 있음

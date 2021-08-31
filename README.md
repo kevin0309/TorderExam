@@ -47,39 +47,7 @@ java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
 ### Database 구축
 - 개인적으로 사용하는 서버PC가 있어 서버PC에 해당 Database를 구축함
 ### API 서버의 구현
-1. 초기설정
-    ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/Spring%20Initializer.JPG?raw=true)
-2. JPA 및 MySQL 세팅
-    https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/resources/application.yml#L4-L15
-3. Spring Boot 설정 구현
-    1. 일반적인 설정
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/config/ServiceConfig.java
-    2. 스프링 요청 처리 쓰레드 관리 전략 수정
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/config/AsyncConfig.java
-    3. JWT 인증에 사용될 설정값 로딩
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/config/JwtTokenConfig.java
-    4. Spring security에 관련된 설정
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/config/SecurityConfig.java
-4. JWT 인증 시스템 구현
-    1. JWT Token에 대한 유틸기능을 구현한 JwtObject 작성
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/security/JwtObject.java
-    2. AbstractAuthenticationToken을 상속받아 principal, credentials를 정의하는 클래스 작성
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/security/JwtAuthenticationToken.java
-    3. 사용자 요청에 대해 JWT 인증을 담당하는 필터 작성
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/security/JwtAuthenticationFilter.java
-    4. SecurityConfig 에서 필터 등록
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/config/SecurityConfig.java#L72-L76
-5. 컨트롤러 기본 응답형식 지정
-    1. Response body에 담길 클래스 정의
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/controller/common/ApiResponse.java
-    2. 컨트롤러에서 발생하는 Exception을 처리하는 핸들러 구현
-        https://github.com/kevin0309/TorderExam/blob/ae45e6c2218ad480018d7333af9e55a0b6a6ef7f/source/src/main/java/io/torder/exam/controller/common/GeneralExceptionHandler.java
-6. JPA를 사용하기 위한 Entity 클래스와 Repository 인터페이스 작성
-    - Entity
-        https://github.com/kevin0309/TorderExam/tree/main/source/src/main/java/io/torder/exam/model
-    - Repository
-        https://github.com/kevin0309/TorderExam/tree/main/source/src/main/java/io/torder/exam/repository
-7. 이후 비즈니스 로직 구현
+- https://github.com/kevin0309/TorderExam/issues/3
 ### 프론트엔드 페이지의 구현
 - 프론트엔드 페이지 구현에는 다음과 같은 언어/라이브러리가 사용됨
     - HTML5

@@ -57,9 +57,7 @@
 ## User
 ### USR001
 - Description
-    ```
-    사용자 회원가입
-    ```
+    > 사용자 회원가입
 - Auth : 비회원
 - End-point
     method|URI
@@ -83,9 +81,7 @@
     `is_success`|boolean|성공시 true
 ### USR002
 - Description
-    ```
-    사용자 로그인
-    ```
+    > 사용자 로그인
 - Auth : 비회원
 - End-point
     method|URI
@@ -102,9 +98,7 @@
     {response}|String|JWT token
 ### USR003
 - Description
-    ```
-    사용자 정보 수정
-    ```
+    > 사용자 정보 수정
 - Auth : 회원
 - End-point
     method|URI
@@ -129,9 +123,7 @@
 ## Menu
 ### MNU001
 - Description
-    ```
-    모든 메뉴를 메뉴종류에 맞게 트리구조로 조회
-    ```
+    > 모든 메뉴를 메뉴종류에 맞게 트리구조로 조회
 - Auth : 회원
 - End-point
     method|URI
@@ -302,9 +294,7 @@
 
 ### MNU002
 - Description
-    ```
-    새로운 주문을 삽입
-    ```
+    > 새로운 주문을 삽입
 - Auth : 회원
 - End-point
     method|URI
@@ -325,9 +315,7 @@
     {response}|boolean|성공시 true
 ### MNU003
 - Description
-    ```
-    주문접수 상태인 주문목록을 조회
-    ```
+    > 주문접수 상태인 주문목록을 조회
 - Auth : 회원
 - End-point
     method|URI
@@ -401,9 +389,7 @@
     ```
 ### MNU004
 - Description
-    ```
-    주문목록을 기반으로 계산서 조회
-    ```
+    > 주문목록을 기반으로 계산서 조회
 - Auth : 회원
 - End-point
     method|URI
@@ -463,9 +449,7 @@
     ```
 ### MNU005
 - Description
-    ```
-    계산서를 기반으로 결제요청을 생성
-    ```
+    > 계산서를 기반으로 결제요청을 생성
 - Auth : 회원
 - End-point
     method|URI

@@ -30,7 +30,7 @@ java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
 ### Database 설계
 - Database Diagram
     ![image](https://github.com/kevin0309/TorderExam/blob/main/docs/ERD.JPG?raw=true)
-- Table description
+- Table description  
     table|description
     ---|---
     user|사용자 정보

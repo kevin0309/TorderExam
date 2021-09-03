@@ -10,6 +10,9 @@
 ## 실행방법
 ```
 java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
+
+Entry-point
+http://localhost:8080/login.html
 ```
 ## 실행환경
 - 해당 프로젝트는 크롬브라우저의 태블릿기능에서 개발되었음

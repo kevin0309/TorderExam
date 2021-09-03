@@ -15,7 +15,7 @@ java -jar ./bin/exam-1.0.4-SNAPSHOT.jar
 - 해당 프로젝트는 크롬브라우저의 태블릿기능에서 개발되었음
 - 최적 해상도 : 1024px * 768px (iPad)
 ## API 명세서
-- More details -> [link](https://github.com/kevin0309/TorderExam/blob/main/docs/API_DOC.md)
+- More details -> [link](https://github.com/kevin0309/TorderExam/wiki/API-document)
 - API code|method|URI|link
     ---|---|---|---
     USR001|`PUT`|/api/user/join|[link](https://github.com/kevin0309/TorderExam/blob/main/docs/API_DOC.md#USR001)
